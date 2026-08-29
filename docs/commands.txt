@@ -1,0 +1,17 @@
+BUILD AND RUN
+make
+make run
+
+
+GDB DEBUG SESSION
+Terminal 1: make
+            make flash
+Terminal 2: gbd-multiarch project.elf
+            target remote localhost:3333
+            monitor reset init
+            monitor flash write_image erase project.elf
+            break <function_name>
+            monitor reset init
+            continue
+            print <variable>, step, next, info registers, etc.
+            quit
