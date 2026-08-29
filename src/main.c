@@ -1,18 +1,15 @@
 #include "../inc/gpio.h"
+#include "../inc/systick.h"
 
 int main(void)
 {
     gpioInit();
+    systickInit();
 
     while(1)
     {
-        ledOn();
-
-        for(volatile int i = 0; i < 10000000; ++i);
-
-        ledOff();
-
-        for(volatile int i = 0; i < 10000000; ++i);
+        ledToggle();
+        systick_ms_delay(1000);
     }
 
     return 0;

@@ -6,6 +6,9 @@ LDFLAGS = -nostdlib -T linker/stm32_f411re_ls.ld -Wl,-Map=project.map
 
 final : project.elf
 
+systick.o : src/systick.c
+	$(CC) $(CFLAGS) $^ -o $@
+
 gpio.o : src/gpio.c
 	$(CC) $(CFLAGS) $^ -o $@
 
@@ -15,7 +18,7 @@ main.o : src/main.c
 stm32_f411re_startup.o : startup/stm32_f411re_startup.c
 	$(CC) $(CFLAGS) $^ -o $@
 
-project.elf : main.o stm32_f411re_startup.o gpio.o
+project.elf : main.o stm32_f411re_startup.o gpio.o systick.o
 	$(CC) $(LDFLAGS) $^ -o $@
 
 project.bin : project.elf
