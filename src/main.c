@@ -9,7 +9,7 @@ int main(void)
     while(1)
     {
         ledToggle();
-        systick_ms_delay(1000);
+        systick_ms_delay(500);
     }
 
     return 0;

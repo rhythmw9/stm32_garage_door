@@ -15,3 +15,7 @@ Terminal 2: gbd-multiarch project.elf
             continue
             print <variable>, step, next, info registers, etc.
             quit
+
+
+FLASH A BINARY VIA OPENOCD
+openocd -f board/st_nucleo_f4.cfg -c "program build/stm32 verify reset exit"
