@@ -58,6 +58,4 @@ SECTIONS
 	 . = ALIGN(4);
 	_ebss = .;  /*Create a global symbol to hold end of bss section*/
 	}> SRAM
-	
-
 }

@@ -4,7 +4,7 @@
 void gpioInit(void)
 {
     // enable clock
-    RCC_AHB1 |= (1U << 0);
+    RCC_AHB1ENR |= (1U << 0);
 
     // set pin A5 to output mode
     GPIOA_MODER |= (1U << 10);

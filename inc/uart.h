@@ -1,6 +1,9 @@
 #ifndef UART_H
 #define UART_H
 
+#define SYS_CLK_FREQ 16000000
+#define BAUD_RATE 115200 //115200
+
 #include <stdint.h>
 
 /* Register Definitions */
@@ -22,5 +25,7 @@
 
 /* Function Prototypes */
 void uartInit(void);
+void uartWriteByte(int byte);
+void uartWriteString(const char* msg);
 
 #endif /* UART_H */

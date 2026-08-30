@@ -1,0 +1,2 @@
+PA5 - green (user) led
+PA2 - USART2_TX

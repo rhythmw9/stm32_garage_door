@@ -1,15 +1,26 @@
 #include "../inc/gpio.h"
 #include "../inc/systick.h"
+#include "../inc/uart.h"
 
 int main(void)
 {
-    gpioInit();
     systickInit();
+    gpioInit();
+    uartInit();
+
+    uartWriteString("Hello");
+    uartWriteString("World");
+
+    systickDelay_ms(10000);
+
+    uartWriteString("Goodbye");
+    uartWriteString("World");
+
+    systickDisable();
 
     while(1)
     {
-        ledToggle();
-        systick_ms_delay(500);
+        // block
     }
 
     return 0;

@@ -20,7 +20,7 @@ void systickDisable(void)
     SYSTICK_CTRL &= ~(1U << 0);
 }
 
-void systick_ms_delay(uint32_t delay)
+void systickDelay_ms(uint32_t delay)
 {
     // for loop that runs for "delay" iterations (delay ms)
     for(volatile int i = 0; i < delay; ++i)

@@ -16,6 +16,6 @@
 /* Function Prototypes */
 void systickInit(void);
 void systickDisable(void);
-void systick_ms_delay(uint32_t delay);
+void systickDelay_ms(uint32_t delay);
 
 #endif /* SYSTICK_H */
