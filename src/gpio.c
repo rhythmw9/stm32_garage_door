@@ -1,4 +1,5 @@
 #include "../inc/gpio.h"
+#include "../inc/rcc.h"
 
 void gpioInit(void)
 {
