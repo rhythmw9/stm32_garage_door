@@ -1,26 +1,39 @@
 #include "../inc/gpio.h"
 #include "../inc/rcc.h"
 
-void gpioInit(void)
+void userLedInit(void)
 {
-    // enable clock
-    RCC_AHB1ENR |= (1U << 0);
+    // clear bits
+    GPIOA_MODER &= ~(1U << 10);
 
-    // set pin A5 to output mode
+    // set PA5 to output mode
     GPIOA_MODER |= (1U << 10);
 }
 
-void ledToggle(void)
+void userLedToggle(void)
 {
     GPIOA_ODR ^= (1U << 5);
 }
 
-void ledOn(void)
+void userLedOn(void)
 {
     GPIOA_ODR |= (1U << 5);
 }
 
-void ledOff(void)
+void userLedOff(void)
 {
     GPIOA_ODR &= ~(1U << 5);
+}
+
+
+void userBtnInit(void)
+{
+    // clear bits (also sets to input mode, PC13)
+    GPIOC_MODER &= ~(1U << 26);
+
+    // clear bits
+    GPIOC_PUPDR &= ~(3U << 26);
+
+    // enable pull down resistor
+    GPIOC_PUPDR |= (2U << 26);
 }

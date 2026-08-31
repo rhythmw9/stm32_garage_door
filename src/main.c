@@ -1,26 +1,37 @@
 #include "../inc/gpio.h"
 #include "../inc/systick.h"
 #include "../inc/uart.h"
+#include "../inc/rcc.h"
 
 int main(void)
 {
-    systickInit();
-    gpioInit();
-    uartInit();
+    // initialize
+    periphClockEnable();
+    userLedInit();
+    userBtnInit();
 
-    uartWriteString("Hello");
-    uartWriteString("World");
+    int btnState = 0; // initially not pressed
 
-    systickDelay_ms(10000);
-
-    uartWriteString("Goodbye");
-    uartWriteString("World");
-
-    systickDisable();
-
+    // main event loop
     while(1)
     {
-        // block
+        // // get button  state
+        // btnState = GPIOC_IDR |= (1U << 13);
+
+        // if(btnState)
+        // {
+        //     userLedOn();
+        // } else
+        // {
+        //     userLedOff();
+        // }
+
+        while(!(GPIOC_IDR & (1U << 13)))
+        {
+            userLedOn();
+        }
+
+        userLedOff();
     }
 
     return 0;

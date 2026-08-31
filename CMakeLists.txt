@@ -6,7 +6,8 @@ add_executable(project src/main.c
                startup/stm32_f411re_startup.c 
                src/gpio.c 
                src/systick.c
-               src/uart.c)
+               src/uart.c
+               src/rcc.c)
 
 set_target_properties(project PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
