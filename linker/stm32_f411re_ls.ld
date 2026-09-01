@@ -1,61 +1,63 @@
 /* 
     Author: Rhythm Winicour-Freeman
     File: stm32_f411re_ls.ld
+	Description: Linker script for stm32f411re application
 */
 
 
-/*1.Entry Point*/
+/* Entry point */
 ENTRY(Reset_Handler)
 
 
-/*2.Memory definitions*/
+/* Memory configuration */
 MEMORY
 {
 	FLASH(rx):ORIGIN =0x08000000,LENGTH =512K
 	SRAM(rwx):ORIGIN =0x20000000,LENGTH =128K
 }
 
+/* end of stack global symbol to be used in the startup file */
 _estack = ORIGIN(SRAM)+LENGTH(SRAM);
  
-/*3.Indicate required heap and stack size*/
+
 
 __max_heap_size = 0x200;
 __max_stack_size = 0x400;
 
-/*Sections*/
+/* Memory sections */
 SECTIONS
 {
-     /*first section of output file*/
+     /* first section of output file */
 	.text :
 	{
 	  . = ALIGN(4);
-	  *(.isr_vector_tbl)  /*merge all .isr_vector_tbl sections of input files*/
-	  *(.text)             /*merge all .text sections of input files*/
-	  *(.rodata)           /*merge all .rodata sections of input files*/
+	  *(.isr_vector_tbl)  /* merge all .isr_vector_tbl sections of input files */
+	  *(.text)             /* merge all .text sections of input files */
+	  *(.rodata)           /* merge all .rodata sections of input files */
 	  . = ALIGN(4);
-	 _etext = .;          /*Create a global symbol to hold end of text section*/
+	 _etext = .;          /* Create a global symbol to hold end of text section */
 	}>FLASH
 	    
 
-    /*second section of output file*/
-
+    /* second section of output file */
 	.data :
 	{
 	 . = ALIGN(4);
-	_sdata = .;   /*Create a global symbol to hold start of data section*/
+	_sdata = .;   /* Create a global symbol to hold start of data section */
 	  *(.data)
 	 . = ALIGN(4);
-	_edata = .;   /*Create a global symbol to hold end of data section*/
-	} > SRAM AT> FLASH  /*>(vma) AT> (lma)*/
+	_edata = .;   /* Create a global symbol to hold end of data section */
+	} > SRAM AT> FLASH  /* >(vma) AT> (lma) */
+
 	_sidata = LOADADDR(.data);  /* Get the .data sections flash address */	
 	
-	/*third section of output file*/
+	/* third section of output file */
 	.bss :
 	{
 	 . = ALIGN(4);
-	_sbss = .;  /*Create a global symbol to hold start of bss section*/
+	_sbss = .;  /* Create a global symbol to hold start of bss section */
 	*(.bss)  /*merge all .bss sections of input files*/
 	 . = ALIGN(4);
-	_ebss = .;  /*Create a global symbol to hold end of bss section*/
+	_ebss = .;  /* Create a global symbol to hold end of bss section */
 	}> SRAM
 }
