@@ -1,3 +1,8 @@
+/* 
+    Author: Rhythm Winicour-Freeman
+    File: gpio.h
+    Description: Register definitions and function definitions for all GPIO peripherals 
+*/
 #ifndef GPIO_H
 #define GPIO_H
 
