@@ -1,3 +1,8 @@
+/* 
+    Author: Rhythm Winicour-Freeman
+    File: systick.h
+    Description: Register definitions and functin prototpyes for the SYSTICK core peripheral
+*/
 #ifndef SYSTICK_H
 #define SYSTICK_H
 
