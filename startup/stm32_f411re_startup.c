@@ -1,12 +1,13 @@
 /* 
     Author: Rhythm Winicour-Freeman
     File: stm32_f411re_startup.c
+    Description: Startup file for stm32f411re application
 */
 
 #include <stdint.h>
 
 
-// external symbols defined in the linker script
+/* external symbols defined in the linker script */
 extern uint32_t _estack;
 extern uint32_t _etext;
 extern uint32_t _sdata;
@@ -16,12 +17,14 @@ extern uint32_t _ebss;
 extern uint32_t _sidata;
 
 
-// Function prototypes
+/* Function prototypes */
 void Reset_Handler(void);
 int main(void);
 
-// essential interrupt handler prototypes
-// this specific attribute allows the handlers to be overridden by explicitly named handlers with the same name elseware
+/* 
+    essential interrupt handler prototypes
+        -this specific attribute allows the handlers to be overridden by explicitly named handlers with the same name elseware
+*/
 void NMI_Handler(void) __attribute__ ((weak, alias("Default_Handler")));
 void HardFault_Handler(void) __attribute__ ((weak, alias("Default_Handler")));
 void MemManage_Handler(void) __attribute__ ((weak, alias("Default_Handler")));
@@ -40,7 +43,7 @@ uint32_t vector_tbl[] __attribute__ ((section(".isr_vector_tbl"))) =
 
 
 /* Universal fallback for any ISR that has not been implemented 
-        infinite while loop is better than an undefined state
+        -infinite while loop is better than an undefined state
 */
 void Default_Handler(void)
 {
@@ -61,9 +64,9 @@ void Reset_Handler(void)
     // copy data section from flash to sram
     while(mem_dst_ptr < &_edata)
     {
-        *mem_dst_ptr = *mem_src_ptr; // copy the value at src into the variable at dst
-	    ++mem_dst_ptr; // advance dest. pointer to the next word
-	    ++mem_src_ptr; // advance src pointer to the next word
+        *mem_dst_ptr = *mem_src_ptr; 
+	    ++mem_dst_ptr; 
+	    ++mem_src_ptr; 
     }
 
     // initalize the pointer for .bss section zeroing
