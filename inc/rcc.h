@@ -10,6 +10,7 @@
 #define RCC_AHB1ENR *(volatile uint32_t*)(RCC_BASE + RCC_AHB1ENR_OFFSET)
 #define RCC_APB1ENR *(volatile uint32_t*)(RCC_BASE + RCC_APB1ENR_OFFSET)
 
+/* Function Prototypes */
 void periphClockEnable(void);
 
 #endif /* RCC_H */
