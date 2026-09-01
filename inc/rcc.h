@@ -1,3 +1,8 @@
+/* 
+    Author: Rhythm Winicour-Freeman
+    File: rcc.h
+    Description: Register definitions and function prototypes for the RCC peripheral 
+*/
 #ifndef RCC_H
 #define RCC_H
 

@@ -1,3 +1,8 @@
+/* 
+    Author: Rhythm Winicour-Freeman
+    File: rcc.c
+    Description: Function implementations for rcc.h 
+*/
 #include "../inc/rcc.h"
 
 /* Bit Fields */
