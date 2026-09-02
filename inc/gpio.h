@@ -1,12 +1,14 @@
 /* 
     Author: Rhythm Winicour-Freeman
     File: gpio.h
-    Description: Register definitions and function definitions for all GPIO peripherals 
+    Description: Register/bit field definitions and function definitions for all GPIO peripherals 
 */
 #ifndef GPIO_H
 #define GPIO_H
 
+
 #include <stdint.h>
+
 
 /* Register Definitions */
 #define GPIOA_BASE (0x40020000) // This register is the base address for GPIOA but also its the first address in the whole GPIOx memory block
@@ -53,6 +55,21 @@
 #define GPIOC_AFRL *(volatile uint32_t*)(GPIOC_BASE + GPIOC_AFRL_OFFSET)
 #define GPIOC_AFRH *(volatile uint32_t*)(GPIOC_BASE + GPIOC_AFRH_OFFSET)
 
+
+/* Bit Fields */
+#define MODER_PIN5_OUTPUT (1U << 10)
+#define MODER_PIN5_ANALOG (3U << 10) // use this for clearing bits (and input mode)
+#define ODR_PIN5 (1U << 5)
+#define MODER_PIN13_IO (1U << 26)
+#define MODER_PIN13_ANALOG (3U << 26) // use this for clearing bits (and input mode)
+#define PUPDR_PIN13_CLEAR (3U << 26) // use for no PUPDR as well
+#define PUPDR_PIN13_PD (2U << 26)
+#define MODER_PIN2_ANALOG (3U << 4) // use this for clearing bits (and input mode)
+#define MODER_PIN2_ALT (2U << 4)
+#define AFRL_PIN2_AF15 (0b1111 << 8) // set to alt func 15, also use this for clearing
+#define AFRL_PIN2_AF7 (0b0111 << 8)
+
+
 /* Function Prototypes */
 void userLedInit(void);
 void userLedToggle(void);
@@ -60,5 +77,6 @@ void userLedOn(void);
 void userLedOff(void);
 
 void userBtnInit(void);
+
 
 #endif /* GPIO_H */

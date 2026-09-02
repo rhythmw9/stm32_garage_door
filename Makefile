@@ -1,3 +1,8 @@
+# 
+#    Author: Rhythm Winicour-Freeman
+#    File: Makefile
+#    Description: Project compile, link, and run rules (outdated)
+#
 CC = arm-none-eabi-gcc
 CFLAGS = -c -g -mcpu=cortex-m4 -mthumb -std=gnu11
 LDFLAGS = -T -nostdlib linker/stm32_f411re_ls.ld -Wl,-Map=project.map

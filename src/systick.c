@@ -5,11 +5,6 @@
 */
 #include "../inc/systick.h"
 
-#define PROCESSOR_FREQ 16000
-#define SYSTICK_RELOAD (PROCESSOR_FREQ - 1)
-#define SYSTICK_CTRL_PROC_CLK (1U << 2)
-#define SYSTICK_EN (1U << 0) // clear to disable
-#define SYSTICK_COUNT_FLAG (1U << 16)
 
 void systickInit(void)
 {

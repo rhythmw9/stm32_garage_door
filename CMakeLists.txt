@@ -1,3 +1,8 @@
+# 
+#    Author: Rhythm Winicour-Freeman
+#    File: CMakeList.txt
+#    Description: Project build rules
+#
 cmake_minimum_required(VERSION 4.0.0)
 
 project(project LANGUAGES C)

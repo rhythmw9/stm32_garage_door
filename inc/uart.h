@@ -1,10 +1,18 @@
+/* 
+    Author: Rhythm Winicour-Freeman
+    File: uart.h
+    Description: Register/bit field definitions and function prototypes for the USART peripheral 
+*/
 #ifndef UART_H
 #define UART_H
 
-#define SYS_CLK_FREQ 16000000
-#define BAUD_RATE 115200 //115200
+/* Constants */
+#define SYS_CLK_FREQ 16000000 // 16 MHz
+#define BAUD_RATE 115200 
+
 
 #include <stdint.h>
+
 
 /* Register Definitions */
 #define USART2_BASE (0x40004400)
@@ -23,9 +31,17 @@
 #define USART2_CR3 *(volatile uint32_t*)(USART2_BASE + USART2_CR3_OFFSET)
 #define USART2_GTPR *(volatile uint32_t*)(USART2_BASE + USART2_GTPR_OFFSET)
 
+
+/* Bit Fields */
+#define USART_TX_EN (1U << 3)
+#define USART_EN (1U << 13)
+#define USART_TXE (1U << 7)
+
+
 /* Function Prototypes */
 void uartInit(void);
 void uartWriteByte(int byte);
 void uartWriteString(const char* msg);
+
 
 #endif /* UART_H */

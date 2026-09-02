@@ -6,15 +6,6 @@
 #include "../inc/gpio.h"
 #include "../inc/rcc.h"
 
-/* Bit Fields */
-#define MODER_PIN5_OUTPUT (1U << 10)
-#define MODER_PIN5_ANALOG (3U << 10) // use this for clearing bits (and input mode)
-#define ODR_PIN5 (1U << 5)
-#define MODER_PIN13_IO (1U << 26)
-#define MODER_PIN13_ANALOG (3U << 26) // use this for clearing bits (and input mode)
-#define PUPDR_PIN13_CLEAR (3U << 26) // use for no PUPDR as well
-#define PUPDR_PIN13_PD (2U << 26)
-
 
 void userLedInit(void)
 {

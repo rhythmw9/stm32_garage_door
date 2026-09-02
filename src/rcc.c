@@ -5,9 +5,6 @@
 */
 #include "../inc/rcc.h"
 
-/* Bit Fields */
-#define GPIOA_CLK_EN (1U << 0)
-#define GPIOC_CLK_EN (1U << 2)
 
 void periphClockEnable(void)
 {
@@ -16,4 +13,7 @@ void periphClockEnable(void)
 
     // GPIOC
     RCC_AHB1ENR |= GPIOC_CLK_EN;
+
+    // USART2
+    RCC_APB1ENR |= USART2_CLK_EN;
 }
