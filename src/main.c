@@ -1,7 +1,14 @@
+/* 
+    Author: Rhythm Winicour-Freeman
+    File: main.c
+    Description: Main application file 
+*/
 #include "../inc/gpio.h"
 #include "../inc/systick.h"
 #include "../inc/uart.h"
 #include "../inc/rcc.h"
+
+#define PRESS_DETECTED (GPIOC_MODER & (1U << 13))
 
 int main(void)
 {
@@ -9,27 +16,25 @@ int main(void)
     periphClockEnable();
     userLedInit();
     userBtnInit();
+    uartInit();
 
-    int btnState = 0; // initially not pressed
+    int pressCount = 0;
+    const char* p = (char*)&pressCount;
+
 
     // main event loop
     while(1)
     {
-        // // get button  state
-        // btnState = GPIOC_IDR |= (1U << 13);
-
-        // if(btnState)
-        // {
-        //     userLedOn();
-        // } else
-        // {
-        //     userLedOff();
-        // }
-
-        while(!(GPIOC_IDR & (1U << 13)))
+        if(PRESS_DETECTED)
         {
-            userLedOn();
+            ++pressCount;
+            uartWriteString("Press Detected!");
+            uartWriteString(p);
         }
+
+        userLedOn();
+
+        systickDelay_ms(5000);
 
         userLedOff();
     }

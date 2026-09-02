@@ -16,4 +16,7 @@ void periphClockEnable(void)
 
     // USART2
     RCC_APB1ENR |= USART2_CLK_EN;
+
+    // SYSCFG
+    RCC_APB2ENR |= SYSCFG_CLK_EN;
 }
