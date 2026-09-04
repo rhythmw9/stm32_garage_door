@@ -1,7 +1,2 @@
-# Build outputs
-*.o
-*.elf
-*.bin
-*.map
 /build
 /.vscode

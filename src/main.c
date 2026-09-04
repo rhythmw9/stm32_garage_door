@@ -7,8 +7,8 @@
 #include "../inc/systick.h"
 #include "../inc/uart.h"
 #include "../inc/rcc.h"
+#include "../inc/exti.h"
 
-#define PRESS_DETECTED (GPIOC_MODER & (1U << 13))
 
 int main(void)
 {
@@ -17,26 +17,12 @@ int main(void)
     userLedInit();
     userBtnInit();
     uartInit();
-
-    int pressCount = 0;
-    const char* p = (char*)&pressCount;
-
+    pc13ExtiInit();
 
     // main event loop
     while(1)
     {
-        if(PRESS_DETECTED)
-        {
-            ++pressCount;
-            uartWriteString("Press Detected!");
-            uartWriteString(p);
-        }
-
-        userLedOn();
-
-        systickDelay_ms(5000);
-
-        userLedOff();
+        
     }
 
     return 0;

@@ -4,14 +4,14 @@
     Description: Function implementations for exti.h
 */
 #include "../inc/exti.h"
-//#include "../inc/rcc.h"
+#include "../inc/gpio.h"
 
 /* Helper Function Prototypes */
 void disableGlobalInterrupts(void);
 void enableGlobalInterrupts(void);
 void enableIrqLine(uint8_t irqNum);
 
-void pc13ExtiInit(void)
+void pc13ExtiInit()
 {
     disableGlobalInterrupts();
 
@@ -24,8 +24,11 @@ void pc13ExtiInit(void)
     // set to trigger on falling edge
     EXTI_FTSR |= EXTI13_FALLING_EN;
 
-    // enable EXTI 13 in the NVIC
-    //NVIC_EnableIRQ(EXTI15_10_IRQn);
+    /* Hardcoded to EXTI 13 for now (IRQ number 40)...
+        TODO: generalize to all interrupt lines
+    */
+    uint8_t irqNum = 40;
+    enableIrqLine(irqNum);
 
     enableGlobalInterrupts();
 }
@@ -47,10 +50,27 @@ void enableGlobalInterrupts(void)
 
 void enableIrqLine(uint8_t irqNum)
 {
-    uint8_t const32_8bit = 32;
+    volatile uint32_t* NVIC_ISER_BASE_ = NVIC_ISER_BASE;
 
-    uint8_t regIndex = irqNum / const32_8bit;
-    uint8_t bitPos = irqNum % const32_8bit;
+    // compute which ISR register to access and which bit to set in that address
+    uint8_t regIndex = irqNum / 32;
+    uint8_t bitPos = irqNum % 32;
 
-    // TODO: complete function, will have to define EXTI and NVIC registers and offsets to continue
+    // enable the specific IRQ line
+    NVIC_ISER_BASE_[regIndex] |= (1U << bitPos);
+}
+
+
+/* Interupt Service Routine */
+void EXTI15_10_IRQHandler(void)
+{
+    // wait for button to be pressed
+    if((EXTI_PR & LINE13) != 0)
+    {
+        // clear flag
+        EXTI_PR |= LINE13;
+
+        // toggle user led
+        GPIOA_ODR ^= ODR_PIN5;
+    }
 }
