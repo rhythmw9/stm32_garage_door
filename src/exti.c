@@ -6,6 +6,9 @@
 #include "../inc/exti.h"
 #include "../inc/gpio.h"
 
+// button interrupt flag
+volatile int btnFlag = 0;
+
 /* Helper Function Prototypes */
 void disableGlobalInterrupts(void);
 void enableGlobalInterrupts(void);
@@ -72,5 +75,8 @@ void EXTI15_10_IRQHandler(void)
 
         // toggle user led
         GPIOA_ODR ^= ODR_PIN5;
+
+        // set the flag
+        btnFlag = 1;
     }
 }

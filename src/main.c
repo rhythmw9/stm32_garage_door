@@ -9,6 +9,8 @@
 #include "../inc/rcc.h"
 #include "../inc/exti.h"
 
+extern volatile int btnFlag;
+
 
 int main(void)
 {
@@ -22,7 +24,11 @@ int main(void)
     // main event loop
     while(1)
     {
-        
+        if(btnFlag == 1)
+        {
+            uartWriteString("Button Pressed!");
+            btnFlag = 0; // clear flag
+        }
     }
 
     return 0;
