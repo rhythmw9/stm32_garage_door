@@ -23,7 +23,7 @@
 
 #define NVIC_ISER_BASE (volatile uint32_t*)(0xE000E100) // used as a base pointer for the whole ISERx block
 
-/* Bit Field */
+/* Bit Fields */
 #define LINE13 (1U << 13)
 #define EXTICR4_PC13_SEL (0b0010 << 4)
 #define EXTI13_IRQ_UNMASK (1U << 13)

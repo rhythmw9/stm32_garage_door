@@ -22,7 +22,7 @@ void Reset_Handler(void);
 int main(void);
 
 /* 
-    essential interrupt handler prototypes
+    Interrupt handler prototypes
         -this specific attribute allows the handlers to be overridden by explicitly named handlers with the same name elseware
 */
 void NMI_Handler                    (void) __attribute__ ((weak, alias("Default_Handler")));
@@ -94,6 +94,7 @@ void SPI5_IRQHandler              	(void) __attribute__ ((weak, alias("Default_H
 
 
 /* This array defines the MCUs interrupt vector table, placed in the .isr_vector_tbl section defined in the linker script */
+/* The order of this array is literally how it's physically layed out in memory. The 0's must be in those positions */
 uint32_t vector_tbl[] __attribute__ ((section(".isr_vector_tbl"))) =
 {
     (uint32_t)&_estack,
