@@ -1,3 +1,9 @@
 PA5 - green (user) led
-PA2 - USART2_TX
 PC13 - user button
+
+PA2 - USART2_TX
+
+PA8 - IN1
+PA10 - IN2 
+PA9 - IN3
+PA3 - IN4

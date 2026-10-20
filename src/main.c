@@ -8,8 +8,10 @@
 #include "../inc/uart.h"
 #include "../inc/rcc.h"
 #include "../inc/exti.h"
+#include "../inc/motor.h"
 
 extern volatile int btnFlag;
+int currentAngle = 0;
 
 
 int main(void)
@@ -17,18 +19,17 @@ int main(void)
     // initialize
     periphClockEnable();
     userLedInit();
+    systickInit();
     userBtnInit();
     uartInit();
     pc13ExtiInit();
+    motorDriverBoardInit();
 
     // main event loop
     while(1)
     {
-        if(btnFlag == 1)
-        {
-            uartWriteString("Button Pressed!");
-            btnFlag = 0; // clear flag
-        }
+        motorRotate(360, 10, &currentAngle);
+        motorRotate(0, 10, &currentAngle);
     }
 
     return 0;

@@ -20,7 +20,7 @@
 
 
 /* Bit Fields */
-#define SYSTICK_RELOAD (1600 - 1) // for a 1ms tick
+#define SYSTICK_RELOAD (16000 - 1) // for a 1ms tick
 #define SYSTICK_CTRL_PROC_CLK (1U << 2)
 #define SYSTICK_EN (1U << 0) // clear to disable
 #define SYSTICK_COUNT_FLAG (1U << 16)

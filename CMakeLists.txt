@@ -13,7 +13,8 @@ add_executable(project src/main.c
                src/systick.c
                src/uart.c
                src/rcc.c
-               src/exti.c)
+               src/exti.c
+               src/motor.c)
 
 set_target_properties(project PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 

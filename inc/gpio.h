@@ -68,6 +68,14 @@
 #define MODER_PIN2_ALT (2U << 4)
 #define AFRL_PIN2_AF15 (0b1111 << 8) // set to alt func 15, also use this for clearing
 #define AFRL_PIN2_AF7 (0b0111 << 8)
+#define MODER_PIN8_OUTPUT (1U << 16)
+#define ODR_PIN8 (1U << 8)
+#define MODER_PIN10_OUTPUT (1U << 20)
+#define ODR_PIN10 (1U << 10)
+#define MODER_PIN9_OUTPUT (1U << 18)
+#define ODR_PIN9 (1U << 9)
+#define MODER_PIN3_OUTPUT (1U << 6)
+#define ODR_PIN3 (1U << 3)
 
 
 /* Function Prototypes */
